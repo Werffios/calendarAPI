@@ -1,0 +1,21 @@
+# docker-compose.yml
+networks:
+  net:
+    external: true
+
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi_app
+    restart: always
+#    ports:
+#      - "8452:5000"
+    environment:
+      - PORT=8000
+    networks:
+      net:
+        ipv4_address: 192.168.10.31
+    volumes:
+      - .:/app
